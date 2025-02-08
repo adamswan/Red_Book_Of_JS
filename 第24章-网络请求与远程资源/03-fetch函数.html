@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch('"https://www.yuque.com/"', {
+        // 配置对象，可以配置请求头、请求方式、请求体等等
+        method: "get",
+      })
+        .then(async (res) => {
+          let data = await res.text();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // 中断请求
+      let abortController = new AbortController();
+
+      fetch("wikipedia.zip", { signal: abortController.signal }).catch(() =>
+        console.log("aborted!")
+      );
+
+      // 10 毫秒后中断请求
+      setTimeout(() => abortController.abort(), 10);
+    </script>
+  </body>
+</html>

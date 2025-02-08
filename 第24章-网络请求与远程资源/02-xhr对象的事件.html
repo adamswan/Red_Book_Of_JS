@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let xhr = new XMLHttpRequest();
+
+      xhr.onload = function () {
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+          alert(xhr.responseText);
+        } else {
+          alert("Request was unsuccessful: " + xhr.status);
+        }
+      };
+
+      xhr.onprogress = function (event) {
+        let loaded = event.loaded;
+        let total = event.total;
+        if (event.lengthComputable) {
+          console.log("下载进度：" + (loaded / total) * 100 + "%");
+        }
+      };
+
+      xhr.open("get", "altevents.php", true);
+
+      xhr.send(null);
+    </script>
+  </body>
+</html>

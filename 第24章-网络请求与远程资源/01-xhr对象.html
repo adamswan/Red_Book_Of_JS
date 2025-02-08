@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1、创建xhr对象
+      let xhr = new XMLHttpRequest();
+
+      // 2、设置请求参数
+      // open的第三个参数用于控制是否异步，默认true，异步
+      xhr.open("get", "https://www.yuque.com/", true);
+
+      // 3、监听状态变化
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText);
+        }
+      };
+
+      // 4、配置超时
+      xhr.timeout = 5000; // 设置 5 秒超时
+      xhr.ontimeout = function () {
+        alert("Request did not return in a second.");
+      };
+
+      // 5、设置请求头
+      xhr.setRequestHeader("MyHeader", "MyValue");
+
+      // 6、请求发出去
+      xhr.send();
+    </script>
+  </body>
+</html>
