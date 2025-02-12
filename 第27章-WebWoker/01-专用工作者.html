@@ -7,8 +7,17 @@
   </head>
   <body>
     <script>
-      let worker = new Worker("./emptyWorker.js");
-      console.log("worker", worker);
+      let worker = new Worker("./Worker1.js");
+
+      console.log("打印worker", worker);
+
+      // 1、向 worker 线程发消息
+      worker.postMessage("高圆圆");
+
+      // 2、接收 worker 线程的消息
+      worker.addEventListener("message", function (data) {
+        console.log("来自 worker 线程:", data.data);
+      });
     </script>
   </body>
 </html>

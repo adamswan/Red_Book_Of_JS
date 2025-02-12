@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>页面1</title>
+  </head>
+
+  <body>
+    <input type="text" id="messageInput" placeholder="Type a message" />
+    <button id="sendMessage">向窗口2发送信息</button>
+    <!-- 来自窗口2的回应 -->
+    <div id="messages"></div>
+
+    <script>
+      // 创建 SharedWorker 实例
+      const sharedWorker = new SharedWorker("shared-worker.js");
+      // 获取 worker 的端口
+      const port = sharedWorker.port;
+
+      // 监听端口的消息事件
+      port.onmessage = function (event) {
+        const message = event.data;
+        const messageElement = document.createElement("p");
+        messageElement.textContent = message;
+        document.getElementById("messages").appendChild(messageElement);
+      };
+
+      // 启动端口通信
+      port.start();
+
+      // 给发送按钮添加点击事件监听器
+      document
+        .getElementById("sendMessage")
+        .addEventListener("click", function () {
+          const input = document.getElementById("messageInput");
+          const message = input.value;
+          if (message) {
+            // 向 worker 发送消息
+            port.postMessage(message);
+            input.value = "";
+          }
+        });
+    </script>
+  </body>
+</html>
