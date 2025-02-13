@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <button id="myButton">点击我</button>
+    <script>
+      // 获取按钮元素
+      const button = document.getElementById("myButton");
+
+      // 为按钮添加点击事件监听器
+      button.addEventListener("click", function () {
+        console.log("按钮被点击了！");
+      });
+
+      // 创建一个鼠标事件
+      const clickEvent = document.createEvent("MouseEvents");
+      // 初始化鼠标事件
+      clickEvent.initMouseEvent(
+        "click",
+        true,
+        true,
+        window,
+        0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+      );
+      // 分发事件到按钮上
+      button.dispatchEvent(clickEvent);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="myDiv">这是一个 div 元素</div>
+
+    <script>
+      // 获取 div 元素
+      const div = document.getElementById("myDiv");
+
+      // 为 div 元素添加自定义事件监听器
+      div.addEventListener("customEvent", function (event) {
+        console.log("自定义事件被触发了，携带的数据是：", event.detail);
+      });
+
+      // 创建一个自定义事件
+      const customEvent = document.createEvent("CustomEvent");
+
+      // 初始化自定义事件
+      customEvent.initCustomEvent("customEvent", true, true, {
+        message: "这是自定义事件携带的数据",
+      });
+
+      // 分发自定义事件到 div 元素上
+      div.dispatchEvent(customEvent);
+    </script>
+  </body>
+</html>
