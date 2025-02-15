@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getName() {
+        // callee 指向所在的函数
+        console.log(arguments.callee);
+        // f getName
+      }
+
+      getName();
+
+      function gaoyuanyuan() {
+        console.log("高圆圆", new.target);
+        // 高圆圆 undefined
+      }
+      gaoyuanyuan();
+
+      function Liuyifei() {
+        console.log("刘亦菲", new.target);
+        // 刘亦菲 ƒ Liuyifei
+      }
+      new Liuyifei();
+    </script>
+  </body>
+</html>

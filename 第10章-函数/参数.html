@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sayHi() {
+        console.log("Hello " + arguments[0] + ", " + arguments[1]);
+      }
+
+      sayHi("高圆圆", "刘亦菲");
+      //  Hello 高圆圆, 刘亦菲
+
+      function sayHi2(name) {
+        console.log(name + ", " + arguments[1]);
+      }
+
+      sayHi2("赵丽颖", "艾玛沃特森");
+      //  赵丽颖, 艾玛沃特森
+    </script>
+  </body>
+</html>
