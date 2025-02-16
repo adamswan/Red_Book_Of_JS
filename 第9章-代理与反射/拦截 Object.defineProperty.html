@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let one = {
+        name: "高圆圆",
+      };
+
+      let p = new Proxy(one, {
+        defineProperty(target, property, descriptor) {
+          console.log("触发 Object.defineProperty()");
+          return Reflect.defineProperty(target, property, descriptor);
+        },
+      });
+
+      Object.defineProperty(p, "age", { value: "18" });
+
+      console.log(p);
+    </script>
+  </body>
+</html>

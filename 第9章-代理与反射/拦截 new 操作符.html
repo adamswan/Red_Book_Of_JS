@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Wife() {
+        this.name = "刘亦菲";
+      }
+
+      let p = new Proxy(Wife, {
+        construct(target, argumentsList, newTarget) {
+          console.log("new 被触发了");
+          return Reflect.construct(...arguments);
+        },
+      });
+
+      new p();
+    </script>
+  </body>
+</html>

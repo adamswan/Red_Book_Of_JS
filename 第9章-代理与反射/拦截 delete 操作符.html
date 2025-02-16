@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let one = {
+        name: "高圆圆",
+      };
+
+      let p = new Proxy(one, {
+        deleteProperty(target, property) {
+          console.log("拦截 delete 操作");
+          return Reflect.deleteProperty(...arguments);
+        },
+      });
+
+      delete p.name;
+    </script>
+  </body>
+</html>
