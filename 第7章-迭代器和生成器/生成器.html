@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义一个生成器函数
+      function* generatorFunction() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+      // 创建生成器对象
+      const generator = generatorFunction();
+
+      // 使用生成器对象进行迭代
+      console.log(generator.next()); // { value: 1, done: false }
+      console.log(generator.next()); // { value: 2, done: false }
+      console.log(generator.next()); // { value: 3, done: false }
+      console.log(generator.next()); // { value: undefined, done: true }
+
+      // 生成器可以直接用于 for...of 循环
+      for (const value of generatorFunction()) {
+        console.log(value); // 依次输出 1, 2, 3
+      }
+    </script>
+  </body>
+</html>

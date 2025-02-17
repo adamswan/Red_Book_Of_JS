@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 自定义一个迭代器对象
+      function createIterator(items) {
+        let index = 0;
+        return {
+          next: function () {
+            const done = index >= items.length;
+            const value = done ? undefined : items[index++];
+            return {
+              value,
+              done,
+            };
+          },
+        };
+      }
+
+      // 使用迭代器遍历数组
+      const arr = [1, 2, 3];
+      const iterator = createIterator(arr);
+
+      console.log(iterator.next()); // { value: 1, done: false }
+      console.log(iterator.next()); // { value: 2, done: false }
+      console.log(iterator.next()); // { value: 3, done: false }
+      console.log(iterator.next()); // { value: undefined, done: true }
+    </script>
+  </body>
+</html>
